@@ -61,7 +61,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ab" green="4e" red="fa" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Room Management"/>
+        <Property name="text" type="java.lang.String" value="Available Hostal Rooms"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

@@ -36,7 +36,7 @@ private Home homeScreen;
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Krungthep", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(250, 78, 171));
-        jLabel1.setText("Room Management");
+        jLabel1.setText("Available Hostal Rooms");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
