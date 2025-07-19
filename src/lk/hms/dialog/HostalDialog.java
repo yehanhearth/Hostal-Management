@@ -6,9 +6,6 @@ package lk.hms.dialog;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import connection.MySQL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import raven.toast.Notifications;
 import java.sql.ResultSet;
@@ -41,7 +38,7 @@ public class HostalDialog extends javax.swing.JDialog {
                 v.add("Selecrt");
                 //Read data using while
                 while (rs.next()) {
-                    int id=rs.getInt("id");
+                    int id=rs.getInt("city_id");
                     String location = rs.getString("city");
                     v.add(id,location);
                 }
@@ -191,22 +188,24 @@ public class HostalDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_HNameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        String varname = String.valueOf(getLocation.getSelectedIndex());
         String HostalName = HName.getText();
         String ownerId = Price.getText();
-
+        int cityid =Integer.parseInt(varname);
+        
 
         try {
-            // 5. Insert into Rooms
-            String insertRoom = "INSERT INTO `Hostel` ( `name`,`owner_id`) VALUES ('"+HostalName+"','"+ownerId+"' )";
+            //  Insert into Rooms
+            MySQL.executeIUD("INSERT INTO `Hostel` ( `name`,`owner_id`,`city_city_id`) VALUES ('"+HostalName+"','"+ownerId+"','"+cityid+"' )");
             
 
-            // 6. Clear fields
+            //  Clear fields
+            getLocation.setSelectedIndex(0);
             Price.setText("");
             HName.setText("");
 
 
-            // 7. Show success notification
+            // Show success notification
             Notifications.getInstance().show(Notifications.Type.SUCCESS,
                     Notifications.Location.TOP_CENTER,
                     1000,
