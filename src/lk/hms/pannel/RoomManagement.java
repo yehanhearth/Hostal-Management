@@ -5,7 +5,7 @@
 package lk.hms.pannel;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-import lk.hms.dialog.hostelRegister;
+import lk.hms.dialog.HostalDialog;
 import lk.hms.dialog.panel.hostalImagepanel;
 import lk.hms.gui.Home;
 
@@ -36,7 +36,7 @@ private Home homeScreen;
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Krungthep", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(250, 78, 171));
-        jLabel1.setText("Room Management");
+        jLabel1.setText("Available Hostal Rooms");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,7 +90,7 @@ private Home homeScreen;
     }// </editor-fold>//GEN-END:initComponents
 
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
-        hostelRegister hRegister =new hostelRegister(homeScreen,true);
+        HostalDialog hRegister =new HostalDialog(homeScreen,true);
         hRegister.setLocationRelativeTo(this);
         hRegister.setVisible(true);
     }//GEN-LAST:event_newBtnActionPerformed
