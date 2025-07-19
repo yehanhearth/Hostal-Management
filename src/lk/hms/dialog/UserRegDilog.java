@@ -192,9 +192,6 @@ public class UserRegDilog extends javax.swing.JDialog {
         String Email = jTextField5.getText();
 
         try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/rms","root","yehanherath987");
-//            Statement s=c.createStatement();
             MySQL.executeIUD("INSERT INTO `Customer` (`nic`,`full_name`,`email`,`phone`,`age`) VALUES ('" + nic + "','" + Fname + "','" + Email + "','" + Mobile + "','" + age + "') ");
             jTextField1.setText(" ");
             jTextField2.setText(" ");

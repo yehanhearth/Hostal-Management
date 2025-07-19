@@ -5,7 +5,7 @@
 package lk.hms.pannel;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-import lk.hms.dialog.hostelRegister;
+import lk.hms.dialog.HostalDialog;
 import lk.hms.dialog.panel.hostalImagepanel;
 import lk.hms.gui.Home;
 
@@ -90,7 +90,7 @@ private Home homeScreen;
     }// </editor-fold>//GEN-END:initComponents
 
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
-        hostelRegister hRegister =new hostelRegister(homeScreen,true);
+        HostalDialog hRegister =new HostalDialog(homeScreen,true);
         hRegister.setLocationRelativeTo(this);
         hRegister.setVisible(true);
     }//GEN-LAST:event_newBtnActionPerformed
