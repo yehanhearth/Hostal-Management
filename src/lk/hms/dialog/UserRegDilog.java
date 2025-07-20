@@ -9,6 +9,7 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import raven.toast.Notifications;
 import connection.MySQL;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -185,27 +186,76 @@ public class UserRegDilog extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        String Fname = jTextField2.getText();
-        String age = jTextField3.getText();
-        String Mobile = jTextField1.getText();
-        String nic = jTextField4.getText();
-        String Email = jTextField5.getText();
+String Fname = jTextField2.getText().trim();
+String age = jTextField3.getText().trim();
+String Mobile = jTextField1.getText().trim();
+String nic = jTextField4.getText().trim();
+String Email = jTextField5.getText().trim();
 
-        try {
-            MySQL.executeIUD("INSERT INTO `Customer` (`nic`,`full_name`,`email`,`phone`,`age`) VALUES ('" + nic + "','" + Fname + "','" + Email + "','" + Mobile + "','" + age + "') ");
-            jTextField1.setText(" ");
-            jTextField2.setText(" ");
-            jTextField3.setText(" ");
-            jTextField4.setText(" ");
-            jTextField5.setText(" ");
-            Notifications.getInstance().show(Notifications.Type.SUCCESS,//message type
-                    Notifications.Location.TOP_CENTER,
-                    1000,
-                    "User Sucessfully Registerd");
+// Input Validation
+if (Fname.isEmpty() || age.isEmpty() || Mobile.isEmpty() || nic.isEmpty() || Email.isEmpty()) {
+    JOptionPane.showMessageDialog(null,
+            "All fields are required. Please complete the form.",
+            "Validation Error",
+            JOptionPane.ERROR_MESSAGE);
+    return;
+}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+// Age must be a number
+if (!age.matches("\\d+")) {
+    JOptionPane.showMessageDialog(null,
+            "Age must be a valid number.",
+            "Validation Error",
+            JOptionPane.ERROR_MESSAGE);
+    return;
+}
+
+// Mobile must be 10 digits
+if (!Mobile.matches("\\d{10}")) {
+    JOptionPane.showMessageDialog(null,
+            "Mobile number must be exactly 10 digits.",
+            "Validation Error",
+            JOptionPane.ERROR_MESSAGE);
+    return;
+}
+
+// Email format validation
+if (!Email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+    JOptionPane.showMessageDialog(null,
+            "Please enter a valid email address.",
+            "Validation Error",
+            JOptionPane.ERROR_MESSAGE);
+    return;
+}
+
+try {
+    // Insert into DB
+    MySQL.executeIUD("INSERT INTO `Customer` (`nic`, `full_name`, `email`, `phone`, `age`) " +
+            "VALUES ('" + nic + "','" + Fname + "','" + Email + "','" + Mobile + "','" + age + "')");
+
+    // Clear fields
+    jTextField1.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+    jTextField5.setText("");
+
+    // Raven success alert
+    Notifications.getInstance().show(Notifications.Type.SUCCESS,
+            Notifications.Location.TOP_CENTER,
+            1500,
+            "User Successfully Registered");
+
+} catch (Exception e) {
+    e.printStackTrace();
+
+    // Show error dialog
+    JOptionPane.showMessageDialog(null,
+            "Registration failed: " + e.getMessage(),
+            "Error",
+            JOptionPane.ERROR_MESSAGE);
+}
+
 
 
     }//GEN-LAST:event_jButton1ActionPerformed

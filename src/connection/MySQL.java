@@ -29,7 +29,7 @@ public class MySQL {
         try {
             connection.createStatement().executeUpdate(query);
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
